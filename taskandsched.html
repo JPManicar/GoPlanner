@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Go Planner Tasks and Schedule</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="fa/css/all.min.css">
+
+
+</head>
+
+<body>
+
+	<section class="container-fluid" id="form-box">
+
+		<!-- Header -->
+		
+		<div class="row" id="buttonbox">
+
+			<div id="btn"></div>
+
+				<button type="button" class="toggle-btn" ><p class="p1">My Tasks</p></button>
+				<br>
+
+		</div>
+
+		<!-- Header END -->
+
+		<!-- No Task Text (Shows up if no task is added yet.) -->
+
+		<div class="row" id="notask">
+			
+			<h1 style="color: gray;">There are no tasks added yet.</h1>
+
+		</div>
+
+		<!-- No Task Text END -->
+
+		<!-- The Popup Modal -->
+
+		<div class="center">
+
+		<div class="popup animate" id="popup">
+
+			<div class="popup2">
+				
+				<!-- Modal Header -->
+
+				<h2>Add Task</h2>
+
+				<!-- Modal Header END -->
+
+				<!-- Close Button -->
+
+				<label for="click" class="fas fa-times" onclick="closeAddTasks()"></label>
+
+				<!-- Close Button END -->
+
+			</div>
+
+			<br>
+
+			<!-- Input of Tasks, Start Time, End Time, and Category -->
+
+			<form>
+			<label for="tasktitle" id="lbltt">Task:</label>
+			<input type="text" id="tasktitle" name="title" maxlength="18"> 
+			<br>
+			<br>
+
+			<label for="starttime" id="lblst">Start Time:</label>
+			<input type="text" id="starttime" name="title" maxlength="8">
+			<br>
+			<br>
+
+			<label for="finishtime" id="lblft">Finish Time:</label>
+			<input type="text" id="finishtime" name="title" maxlength="8">
+			<br>
+			<br>
+
+			<label for="category" id="lblcat">Task Type:</label>
+			<select id="category" name="ct" class="category">
+
+  				<option value="School" selected>School</option>
+    			<option value="Work">Work</option>
+    			<option value="Health">Health</option>
+    			<option value="Personal">Personal</option>
+    			<option value="Leisure">Leisure</option>
+
+  			</select>
+
+  			<!-- Input of Tasks, Start Time, End Time, and Category END -->
+
+			
+
+			<br>
+			<br>
+
+			<div class="line"></div>
+
+			<center>
+			<br>
+
+			<!-- Submit Task Button -->
+			<button type="button" class="submittask" onclick="addTasks()">Submit</button>
+			<!-- Submit Task Button END -->
+
+			<!-- Reset Input Button -->
+			<input type="reset" class="resettask">
+			<!-- Reset Input Button END -->
+
+			</form>
+
+			</center>
+			
+		</div>
+
+		</div>
+
+		<!-- Popup Modal END -->
+
+		<!-- Create Schedule and Add Task Button -->
+
+		<div class="wrapper">
+				
+			<div class="button">
+				
+				<div class="icon" onclick="createSchedule()"><i class="fas fa-calendar"></i></div>
+				<span onclick="createSchedule()">Create Schedule</span>
+
+			</div>
+
+			<div class="button2">
+				
+				<div class="icon" onclick="openAddTasks()"><i class="fas fa-plus"></i></div>
+				<span onclick="openAddTasks()">Add Task</span>
+
+			</div>
+
+		</div>
+
+		<!-- Create Schedule and Add Task Button END -->
+
+		<!-- First Row of Task (No display if first task is not added yet.) -->
+
+		<div id="tasks1" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle1">1.) Task:</label>
+				<input readonly type="text" id="tasktitle1" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime1">Start Time:</label>
+				<input readonly type="text" id="starttime1" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime1">Finish Time:</label>
+				<input readonly type="text" id="finishtime1" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category1">Task Type:</label>
+				<input readonly type="text" id="category1" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- First Row of Task END -->
+
+		<!-- Second Row of Task (No display if second task is not added yet.) -->
+
+		<div id="tasks2" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle2">2.) Task:</label>
+				<input readonly type="text" id="tasktitle2" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime2">Start Time:</label>
+				<input readonly type="text" id="starttime2" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime2">Finish Time:</label>
+				<input readonly type="text" id="finishtime2" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category2">Task Type:</label>
+				<input readonly type="text" id="category2" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Second Row of Task END -->
+
+		<!-- Third Row of Task (No display if third task is not added yet.) -->
+
+		<div id="tasks3" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle3">3.) Task:</label>
+				<input readonly type="text" id="tasktitle3" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime3">Start Time:</label>
+				<input readonly type="text" id="starttime3" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime3">Finish Time:</label>
+				<input readonly type="text" id="finishtime3" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category3">Task Type:</label>
+				<input readonly type="text" id="category3" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Third Row of Task END -->
+
+		<!-- Fourth Row of Task (No display if fourth task is not added yet.) -->
+
+		<div id="tasks4" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle4">4.) Task:</label>
+				<input readonly type="text" id="tasktitle4" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime4">Start Time:</label>
+				<input readonly type="text" id="starttime4" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime4">Finish Time:</label>
+				<input readonly type="text" id="finishtime4" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category4">Task Type:</label>
+				<input readonly type="text" id="category4" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Fourth Row of Task END -->
+
+		<!-- Fifth Row of Task (No display if fifth task is not added yet.) -->
+
+		<div id="tasks5" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle5">5.) Task:</label>
+				<input readonly type="text" id="tasktitle5" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime5">Start Time:</label>
+				<input readonly type="text" id="starttime5" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime5">Finish Time:</label>
+				<input readonly type="text" id="finishtime5" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category5">Task Type:</label>
+				<input readonly type="text" id="category5" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Fifth Row of Task END -->
+
+		<!-- Sixth Row of Task (No display if sixth task is not added yet.) -->
+
+		<div id="tasks6" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle1">6.) Task:</label>
+				<input readonly type="text" id="tasktitle6" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime1">Start Time:</label>
+				<input readonly type="text" id="starttime6" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime6">Finish Time:</label>
+				<input readonly type="text" id="finishtime6" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category6">Task Type:</label>
+				<input readonly type="text" id="category6" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Sixth Row of Task END -->
+
+		<!-- Seventh Row of Task (No display if seventh task is not added yet.) -->
+
+		<div id="tasks7" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle7">7.) Task:</label>
+				<input readonly type="text" id="tasktitle7" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime7">Start Time:</label>
+				<input readonly type="text" id="starttime7" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime7">Finish Time:</label>
+				<input readonly type="text" id="finishtime7" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category7">Task Type:</label>
+				<input readonly type="text" id="category7" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Seventh Row of Task END -->
+
+		<!-- Eighth Row of Task (No display if eighth task is not added yet.) -->
+
+		<div id="tasks8" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle8">8.) Task:</label>
+				<input readonly type="text" id="tasktitle8" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime8">Start Time:</label>
+				<input readonly type="text" id="starttime8" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime8">Finish Time:</label>
+				<input readonly type="text" id="finishtime8" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category8">Task Type:</label>
+				<input readonly type="text" id="category8" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Eighth Row of Task END- -->
+
+		<!-- Ninth Row of Task (No display if ninth task is not added yet.) -->
+
+		<div id="tasks9" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle9">9.) Task:</label>
+				<input readonly type="text" id="tasktitle9" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime9">Start Time:</label>
+				<input readonly type="text" id="starttime9" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime9">Finish Time:</label>
+				<input readonly type="text" id="finishtime9" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category9">Task Type:</label>
+				<input readonly type="text" id="category9" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Ninth Row of Task END -->
+
+		<!-- Tenth Row of Task (No display if tenth task is not added yet.) -->
+
+		<div id="tasks10" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle10">10.) Task:</label>
+				<input readonly type="text" id="tasktitle1" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime10">Start Time:</label>
+				<input readonly type="text" id="starttime10" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime10">Finish Time:</label>
+				<input readonly type="text" id="finishtime10" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category10">Task Type:</label>
+				<input readonly type="text" id="category10" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Tenth Row of Task END -->
+
+		<!-- Eleventh Row of Task (No display if eleventh task is not added yet.) -->
+
+		<div id="tasks11" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle11">11.) Task:</label>
+				<input readonly type="text" id="tasktitle11" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime11">Start Time:</label>
+				<input readonly type="text" id="starttime11" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime11">Finish Time:</label>
+				<input readonly type="text" id="finishtime11" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category11">Task Type:</label>
+				<input readonly type="text" id="category11" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Eleventh Row of Task END -->
+
+		<!-- Twelft Row of Task (No display if Twelfth task is not added yet.) -->
+
+		<div id="tasks12" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle12">12.) Task:</label>
+				<input readonly type="text" id="tasktitle12" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime12">Start Time:</label>
+				<input readonly type="text" id="starttime12" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime12">Finish Time:</label>
+				<input readonly type="text" id="finishtime12" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category12">Task Type:</label>
+				<input readonly type="text" id="category12" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Twelft Row of Task END -->
+
+		<!-- Thirteenth Row of Task (No display if Thirtheenth task is not added yet.) -->
+
+		<div id="tasks13" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle13">13.) Task:</label>
+				<input readonly type="text" id="tasktitle13" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime13">Start Time:</label>
+				<input readonly type="text" id="starttime13" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime13">Finish Time:</label>
+				<input readonly type="text" id="finishtime13" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category13">Task Type:</label>
+				<input readonly type="text" id="category13" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Thirteenth Row of Task END -->
+
+		<!-- Fourteenth Row of Task (No display if Fourteenth task is not added yet.) -->
+
+		<div id="tasks14" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle14">14.) Task:</label>
+				<input readonly type="text" id="tasktitle14" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime14">Start Time:</label>
+				<input readonly type="text" id="starttime14" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime14">Finish Time:</label>
+				<input readonly type="text" id="finishtime14" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category14">Task Type:</label>
+				<input readonly type="text" id="category14" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Fourteenth Row of Task END -->
+
+		<!-- Fifteenth Row of Task (No display if fifteenth task is not added yet.) -->
+
+		<div id="tasks15" class="input-group">
+
+			<br>
+			<br>
+
+			<div id="lines" class="row border-bottom">
+
+				<form>
+
+				<div class="col-md-3">
+				<label for="tasktitle15">15.) Task:</label>
+				<input readonly type="text" id="tasktitle15" name="tt" class="tasktitles" >
+				</div>
+
+				<div class="col-md-3">
+				<label for="starttime15">Start Time:</label>
+				<input readonly type="text" id="starttime15" name="st" class="starttimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="finishtime15">Finish Time:</label>
+				<input readonly type="text" id="finishtime15" name="ft" class="finishtimes" >
+				</div>
+				
+				<div class="col-md-3">
+				<label for="category15">Task Type:</label>
+				<input readonly type="text" id="category15" name="cat" class="categories" >
+				</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+		<!-- Fifteenth Row of Task END -->
+
+	</section>
+
+
+<script type="text/javascript" src="fa/fontawesome.all.js"></script>
+
+<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
